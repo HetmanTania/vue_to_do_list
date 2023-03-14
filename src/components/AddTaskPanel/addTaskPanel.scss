@@ -1,0 +1,46 @@
+@import '../../style/color.scss';
+@import '../../style/main.scss';
+
+.project-tasks_add {
+    min-height: 40px;
+    @include flex(center, start);
+    border-bottom: 1px solid $light-gray;
+    cursor: pointer;
+
+    .add-btn {
+        @include flex-center;
+        transition: 0.3s;
+        background-color: $orange;
+    }
+
+    span {
+        @include font(14px, $gray);
+        margin-left: 10px;
+        transition: 0.3s;
+        &:hover {
+            color: $orange;
+        }
+    }
+}
+
+.add-task-form {
+    margin-top: 20px;
+    padding: 10px;
+    @include flex(stretch, flex-start);
+    flex-direction: column;
+    border: 1px solid $light-gray;
+    border-radius: 15px;
+
+    .add-task-form_input {
+        display: flex;
+        flex-direction: column;
+    }
+    .add-task-form_btn {
+        @include flex(start, flex-end);
+    }
+
+    .add-task-btn {
+        background-color: $orange;
+        color: $white;
+    }
+}

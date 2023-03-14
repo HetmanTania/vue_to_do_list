@@ -1,0 +1,35 @@
+.side-panel {
+    height: 100%;
+    flex-basis: 305px;
+    flex-shrink: 0;
+    background-color: $white2;
+
+    .content {
+        margin-top: 30px;
+    }
+
+    h5 {
+        margin-bottom: 10px;
+    }
+
+    .list-projects {
+
+
+        .list-projects_item {
+            margin-left: 10px;
+            cursor: pointer;
+
+            .list-projects_item_text {
+                padding: 10px 5px;
+                border-radius: 5px;
+                color: $black;
+
+                &:hover {
+                    background-color: $light-gray2;
+                }
+            }
+            
+        }
+    }
+    
+}

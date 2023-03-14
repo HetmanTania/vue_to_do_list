@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2? family= Blinker:wght@100;200;300;400;600;700;800;900 & family= Roboto & family= Sono: wght@300;400;500 & display=swap');
+@import './color.scss';
+@import './mixins.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Blinker', sans-serif;
+}
+
+.container-max {
+    padding: 0 60px;
+}
+
+.container {
+   padding: 0 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 20px;
+    color: $black;
+}
+
+h5 {
+    color: $transparentGray;
+    font-size: 14px;
+}
+
+ul, ol {
+    list-style: none;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+}
+
+input {
+    margin: 0;
+}
+
+input[type=text] {
+    margin: 5px;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid $light-gray;
+}
+
+.svg {
+    @include size(18px, 18px);
+}
+
+.btn {
+    min-width: 72px;
+    padding: 10px;
+    margin: 0 10px;
+    background-color: $light-gray3;
+    @include font(12px, $dark-gray);
+    font-weight: 700;
+    border: none;
+    border-radius: 7px;
+}
+
+.btn-round {
+    @include size(18px, 18px);
+    border: none;
+    border-radius: 15px;
+}
+
+.invalid-input {
+    font-size: 14px;
+    color: $red;
+}

@@ -1,0 +1,23 @@
+@import './color.scss';
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex($align-items, $justify-content) {
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin font($size: 16px, $color:black) {
+    font-size: $size;
+    color: $color;
+}

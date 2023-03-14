@@ -1,0 +1,15 @@
+@import '../../style/color.scss';
+
+header {
+    height: 44px;
+    background-color: $orange;
+    color: $white;
+
+    .header-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+}
