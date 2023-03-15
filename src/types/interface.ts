@@ -1,18 +1,17 @@
 interface ITask {
-    id: number,
+    id: string,
     name: string,
     desc: string,
 }
 
 interface IProject {
-    id: number,
+    id: string,
     name: string,
-    tasks: ITask[]
+    tasks: ITask[] | []
 }
 
 interface IPojcects {
-    id: number,
-    pojcects: IPojcects[]
+    pojcects: []
 }
 
 export {

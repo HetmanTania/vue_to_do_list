@@ -1,0 +1,24 @@
+@import '../../style/color.scss';
+@import '../../style/mixins.scss';
+
+
+.add-project-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .add-project_input {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-project-form_btn {
+        @include flex(center, flex-end);
+        .add-project-btn {
+            background-color: $orange;
+            color: $white;
+        }
+    }
+}

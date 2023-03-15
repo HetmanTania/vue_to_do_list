@@ -15,7 +15,7 @@ import AddTaskPanel from '@/components/AddTaskPanel/AddTaskPanel.vue'
 export default {
     components: {
         ProjectTasks, 
-        AddTaskPanel
+        AddTaskPanel,
     }
 }
 </script>

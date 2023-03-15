@@ -34,7 +34,7 @@ export default {
     let errors = reactive({
       validName: {
         value: false, 
-        descError: `Task description must contain up to ${descMinMaxLength.maxLength} characters`,
+        descError: `Task name must be between ${nameMinMaxLength.minlength} and ${nameMinMaxLength.maxLength} characters`,
         validation:  (value: number): boolean => {
          return isHasRequiredLength(value, nameMinMaxLength.maxLength, nameMinMaxLength.minlength);
         }
@@ -48,18 +48,18 @@ export default {
       }
     })
 
-    function submit() {
+    function submit(): void {
       console.log('submit');
       console.log(nameTask.value);
       
     }
 
-    function inputName() {
+    function inputName(): void {
       errors.validName.value = errors.validName.validation(nameTask.value.length);
       console.log('valudationName', errors.validName.value);
     }
 
-    function inputDesc() {
+    function inputDesc(): void {
       errors.validDesc.value = errors.validDesc.validation(descTask.value.length);
       console.log('descTask', errors.validDesc.value);
     }
