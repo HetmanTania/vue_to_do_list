@@ -77,3 +77,56 @@ input[type=text] {
     font-size: 14px;
     color: $red;
 }
+
+form {
+    button {
+        cursor: pointer;
+    }
+}
+
+.dialog {
+    position: absolute;
+    top: -45px;
+   
+    @include size(100vw, 100vh);
+    @include flex-center;
+
+    z-index: 2;
+
+    .dialog-bg {
+        @include size(100%, 100%);
+        background-color: $transparentGray;
+    }
+
+    .dialog-content {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+        @include size(450px, 210px);
+        border-radius: 10px;
+        background-color: $white;
+
+        .dialog-header {
+            border-bottom: 1px solid $light-gray3;
+        }
+
+        label {
+            color: $dark-gray;
+            font-weight: 600;
+            margin-bottom: 5px;
+        } 
+
+        .invalid-input {
+            margin: 5px;
+        }
+
+        input[type=text] {
+            margin: 0;
+            border: 1px solid $light-gray;
+            border-radius: 5px;
+        }
+
+    }
+}

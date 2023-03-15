@@ -8,8 +8,32 @@
         margin-top: 30px;
     }
 
-    h5 {
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 5px;
+        padding: 10px 5px;
         margin-bottom: 10px;
+        cursor: pointer;
+
+        .svg {
+            opacity: .7;
+            transition: .3s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        &:hover {
+            background-color: $light-gray2;
+        }
+    }
+
+    h5 {
+        
+        
     }
 
     .list-projects {
