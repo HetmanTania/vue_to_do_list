@@ -47,7 +47,7 @@ export default defineComponent({
     }
 
     function submit() {
-      store.commit('addProject', projectTask.value);
+      store.dispatch('addProject', projectTask.value);
       close();
     }
 

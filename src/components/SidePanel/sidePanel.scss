@@ -4,6 +4,16 @@
     flex-shrink: 0;
     background-color: $white2;
 
+
+    .svg {
+        opacity: .7;
+        transition: .3s;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
     .content {
         margin-top: 30px;
     }
@@ -17,15 +27,6 @@
         margin-bottom: 10px;
         cursor: pointer;
 
-        .svg {
-            opacity: .7;
-            transition: .3s;
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-
         &:hover {
             background-color: $light-gray2;
         }
@@ -37,10 +38,14 @@
     }
 
     .list-projects {
-
+        position: relative;
 
         .list-projects_item {
             margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
             cursor: pointer;
 
             .list-projects_item_text {

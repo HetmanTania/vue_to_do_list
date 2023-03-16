@@ -1,5 +1,5 @@
 <template>
-  <dialog-add-ptoject @close="closeDialog" v-if="isOpenDialog"></dialog-add-ptoject>
+ 
   <div class="side-panel">
     <div class="container">
       <div class="content">
@@ -10,7 +10,13 @@
         <ul  class="list-projects">
             <li v-for="project in getProjects" :key="project.id" class="list-projects_item">
               <div class="list-projects_item_text"> {{ project.name }} </div>
+              <img @click="deleteProject" class="svg" src="@/icons/delete.svg" alt="">
             </li>
+            <dialog-add-project @close="closeDialog" v-if="isOpenAddDialog"></dialog-add-project>
+            <!-- <delete-project  v-if="isOpenDellDialog" title="Delete project?"
+            :desc="() => {return `Уверены, что хотите удалить ${project.name}?`}" ></delete-project> -->
+            <!-- <dialoge-delet v-if="isOpenDellDialog" title="Delete project?" 
+            :desc="() => {return `Уверены, что хотите удалить?`}" ></dialoge-delete> -->
         </ul>
       </div>
     </div>
@@ -18,22 +24,34 @@
 </template>
 
 <script lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex';
 import {IProject}  from '@/types/interface';
-import DialogAddPtoject from '../DialogAddPtoject/DialogAddPtoject.vue'
+import DialogAddProject from '../DialogAddProject/DialogAddProject.vue'
+// import DialogeDelete from '../DialogDelite/DialogeDelete.vue';
+
 
 export default {
   setup() {
     const store = useStore();
-    let isOpenDialog = ref(false);
+    let isOpenAddDialog = ref(false);
+    let isOpenDellDialog = ref(false);
+    onMounted(() => {
+      store.dispatch('setProjects');
+    })
+
     function openDialogAddPtoject(): void {
-      isOpenDialog.value = true;
+      isOpenAddDialog.value = true;
+    }
+
+    function deleteProject(): void {
+      console.log();
+      
     }
 
     function closeDialog(): void {
       console.log('panel close');
-      isOpenDialog.value = false;
+      isOpenAddDialog.value = false;
     }
     
     const getProjects = computed((): IProject[] | [] => {
@@ -41,16 +59,18 @@ export default {
     });
 
     return {
-      isOpenDialog,
-
+      isOpenAddDialog,
+      isOpenDellDialog,
 
       openDialogAddPtoject,
+      deleteProject,
       closeDialog,
       getProjects,
     }
   },
   components: {
-    DialogAddPtoject,
+    DialogAddProject,
+    // DialogeDelete,
   }
 }
 </script>
