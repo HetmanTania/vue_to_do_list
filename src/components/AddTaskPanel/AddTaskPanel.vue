@@ -6,7 +6,7 @@
     <span>Add Task</span>
   </div>
   <div class="add-task-form">
-    <form @submit.prevent="submit">
+    <form >
       <div class="add-task-form_input">
           <input v-model="nameTask" @input="inputName" type="text" name="name" id="" placeholder="Task name">
           <span class="invalid-input" v-show="errors.validName.value">{{errors.validName.descError}}</span>
@@ -48,20 +48,12 @@ export default {
       }
     })
 
-    function submit(): void {
-      console.log('submit');
-      console.log(nameTask.value);
-      
-    }
-
     function inputName(): void {
       errors.validName.value = errors.validName.validation(nameTask.value.length);
-      console.log('valudationName', errors.validName.value);
     }
 
     function inputDesc(): void {
       errors.validDesc.value = errors.validDesc.validation(descTask.value.length);
-      console.log('descTask', errors.validDesc.value);
     }
     
 
@@ -72,8 +64,6 @@ export default {
       inputName,
       inputDesc,
       
-      
-      submit
     }
 
   }

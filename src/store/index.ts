@@ -15,10 +15,18 @@ function addProjectToLocalStorage(project: IProject) {
     else {
       localStorage.setItem('projects', JSON.stringify([project]));
     }
-    console.log("localStore", localStorage.getItem('projects'));
       
   } catch (e) {
       console.log(e);
+  }
+}
+
+function setProjectInLocalStorage(projects: IProject[]): void {
+  try {
+    localStorage.setItem('projects', JSON.stringify([...projects]));
+  } catch(e) {
+    console.log(e);
+    
   }
 }
 
@@ -37,6 +45,23 @@ export default createStore({
   mutations: {
     addProject(state, project: IProject) {
       state.projects = [...state.projects, project];
+      addProjectToLocalStorage(project);
+    },
+    deleteProject(state, id: string) {
+      state.projects = state.projects.filter((el) => {
+        return el.id != id;
+      });
+      setProjectInLocalStorage([...state.projects]);
+    },
+    editProject(state, {id, projectName}) {
+      const editProject: IProject | undefined = state.projects.find((el) => {
+        return el.id === id;
+      });
+      if(editProject && editProject.name) {
+        editProject.name = projectName;
+      }
+
+      setProjectInLocalStorage([...state.projects])
     },
     setProjects(state, projects: IProject[]) {
       state.projects = [...projects];
@@ -57,20 +82,28 @@ export default createStore({
           tasks: tascks
         }
         context.commit('addProject', project);
-        addProjectToLocalStorage(project);
+  
        
+      }
+    },
+    deleteProject(context, project: IProject) {
+      if(project) {
+        context.commit('deleteProject', project.id);
+      }
+    },
+    editProject(context, {id, projectName}) {
+      if(id && projectName.value.length) {
+        context.commit('editProject', {id, projectName})
       }
     },
     setProjects(context) {
      const projects = returnProjectsFromLocalStorage();
      context.commit('setProjects', projects);
-    }
+    },
 
   },
   getters: {
     projects(state): IProject[] | [] {
-      console.log('get ', state.projects);
-      
       return state.projects;
     }
   },

@@ -5,16 +5,21 @@
         <div class="dialog-header">
             <h2>{{ title }}</h2>
         </div>
-
-        <div>
+        <div class="dialog_desc">
             {{ desc }}
+        </div>
+        <div class="dialog_btn">
+          <button class="btn add-project-btn" @click="deleteElement" type="submit">Yes</button>
+          <button class="btn" @click="close">Cancel</button>
         </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
     props: {
         title: {
             type: String,
@@ -26,17 +31,23 @@ export default {
         },
         
     },
-    setup(props) {
-        function close() {
-            console.log();
-            
+    setup(_, context) {
+        
+        function close(): void {
+            context.emit('close');
+        }
+
+        function deleteElement(): void {
+            context.emit('deleteElement');
+            context.emit('close');
         }
 
         return {
-            close
+            close,
+            deleteElement
         }
     }
-}
+})
 </script>
 
 <style>

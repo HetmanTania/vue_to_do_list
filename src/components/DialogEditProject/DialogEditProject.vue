@@ -3,7 +3,7 @@
     <div class="dialog-bg" @click="close"></div>
     <div class="dialog-content">
         <div class="dialog-header">
-            <h2>Add project</h2>
+            <h2>Edit project</h2>
         </div>
        <form class="add-project-form" v-on:submit.prevent="submit">
         <div class="add-project_input">
@@ -21,17 +21,24 @@
 </template>
 
 <script lang="ts">
-import { useStore } from 'vuex';
-import { defineComponent, ref, reactive} from 'vue';
-import useProject from '@/сomposable/useProject';
+import { defineComponent, PropType } from 'vue'
+import useProject from '@/сomposable/useProject'
+
+import { IProject } from '@/types/interface';
 
 export default defineComponent({
-  setup(_, context) {
-    const store = useStore();
-    const {projectName, errors, inputNameProject} = useProject('');
-
+  props: {
+    project: {
+      type:  Object as PropType<IProject>,
+      required: true
+    }
+  },
+  setup(props, context) {
+    
+    const {projectName, errors, inputNameProject} = useProject(props.project?.name);
+    
     function submit() {
-      store.dispatch('addProject', projectName.value);
+      context.emit('editProject', projectName);
       close();
     }
 
@@ -51,5 +58,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import './dialogAddPtoject.scss';
+@import './dialogEditPtoject.scss';
 </style>

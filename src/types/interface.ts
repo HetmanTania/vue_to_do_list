@@ -12,7 +12,7 @@ interface ITasks {
 interface IProject {
     id: string,
     name: string,
-    tasks: ITasks 
+    tasks: ITasks | []
 }
 
 interface IProjcects {
