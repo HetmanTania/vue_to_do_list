@@ -6,19 +6,11 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 
     .add-project_input {
         margin-top: 20px;
         display: flex;
         flex-direction: column;
-    }
-
-    .add-project-form_btn {
-        @include flex(center, flex-end);
-        .add-project-btn {
-            background-color: $orange;
-            color: $white;
-        }
     }
 }
