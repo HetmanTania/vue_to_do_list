@@ -1,4 +1,4 @@
-function generateRandomId(length: number=10): string {
+function generateRandomId(length = 10): string {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
