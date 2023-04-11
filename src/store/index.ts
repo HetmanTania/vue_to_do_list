@@ -1,41 +1,9 @@
 import { createStore } from 'vuex'
 import { IProject, ITasks}  from '@/types/interface';
 import { generateRandomId } from '@/utils/utils';
+import createPersistedState from "vuex-persistedstate";
 interface IState {
   projects: IProject[] | [],
-}
-
-function addProjectToLocalStorage(project: IProject) {
-  try {
-    const projects = returnProjectsFromLocalStorage();
-   
-    if(projects.length) {
-      localStorage.setItem('projects', JSON.stringify([...projects, project]));
-    }
-    else {
-      localStorage.setItem('projects', JSON.stringify([project]));
-    }
-      
-  } catch (e) {
-      console.log(e);
-  }
-}
-
-function setProjectInLocalStorage(projects: IProject[]): void {
-  try {
-    localStorage.setItem('projects', JSON.stringify([...projects]));
-  } catch(e) {
-    console.log(e);
-    
-  }
-}
-
-function returnProjectsFromLocalStorage(): IProject[] | [] {
-  const projects = localStorage.getItem('projects');
-  if(projects?.length) {
-    return JSON.parse(projects);
-  }
-  return [];
 }
 
 export default createStore({
@@ -45,13 +13,11 @@ export default createStore({
   mutations: {
     addProject(state, project: IProject) {
       state.projects = [...state.projects, project];
-      addProjectToLocalStorage(project);
     },
     deleteProject(state, id: string) {
       state.projects = state.projects.filter((el) => {
         return el.id != id;
       });
-      setProjectInLocalStorage([...state.projects]);
     },
     editProject(state, {id, projectName}) {
       const editProject: IProject | undefined = state.projects.find((el) => {
@@ -60,8 +26,6 @@ export default createStore({
       if(editProject && editProject.name) {
         editProject.name = projectName;
       }
-
-      setProjectInLocalStorage([...state.projects])
     },
     setProjects(state, projects: IProject[]) {
       state.projects = [...projects];
@@ -96,17 +60,12 @@ export default createStore({
         context.commit('editProject', {id, projectName})
       }
     },
-    setProjects(context) {
-     const projects = returnProjectsFromLocalStorage();
-     context.commit('setProjects', projects);
-    },
-
   },
   getters: {
     projects(state): IProject[] | [] {
       return state.projects;
     }
   },
-  modules: {
-  }
+  plugins: [createPersistedState()],
+  modules: {}
 })
