@@ -36,6 +36,7 @@
         flex-direction: column;
     }
     .add-task-form_btn {
+        margin-top: 10px;
         @include flex(start, flex-end);
     }
 
