@@ -82,6 +82,11 @@ button {
     cursor: pointer;
 }
 
+button[type="submit"]:disabled {
+    background-color: $transparent-orange;
+    cursor: not-allowed;
+}
+
 .dialog_btn {
     @include flex(center, flex-end);
     .add-project-btn {

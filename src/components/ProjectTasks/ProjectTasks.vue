@@ -1,6 +1,6 @@
 <template>
     <ul class="project-tasks">
-          <project-task></project-task>    
+        <project-task></project-task>    
     </ul>
 </template>
 

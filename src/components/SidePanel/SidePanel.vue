@@ -43,10 +43,6 @@ export default defineComponent({
     const addDialog = useDialog();
     const delleteDialog = useDialog();
 
-    onMounted(() => {
-      store.dispatch("setProjects");
-    });
-
     const state: IState = reactive({
       currentProject: { name: '', id: '', tasks: []},
     });
