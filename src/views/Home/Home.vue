@@ -9,7 +9,6 @@
 
 <script lang="ts">
 import SidePanel from '@/components/SidePanel/SidePanel.vue';
-import AddTaskPanel from '@/components/AddTaskPanel/AddTaskPanel.vue';
 import Project from '../Project/Project.vue';
 
 export default {

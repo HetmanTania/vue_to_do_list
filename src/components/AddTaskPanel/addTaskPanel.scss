@@ -1,8 +1,10 @@
 @import '../../style/color.scss';
 @import '../../style/main.scss';
+@import '../../style/mixins.scss';
 
 .project-tasks_add {
     min-height: 40px;
+    margin-top: 10px;
     @include flex(center, start);
     border-bottom: 1px solid $light-gray;
     cursor: pointer;
