@@ -1,14 +1,16 @@
 import { createStore } from 'vuex'
-import { IProject, ITasks}  from '@/types/interface';
+import { IProject, ITask}  from '@/types/interface';
 import { generateRandomId } from '@/utils/utils';
 import createPersistedState from "vuex-persistedstate";
 interface IState {
   projects: IProject[] | [],
+  currentOpenProject: IProject | {}
 }
 
 export default createStore({
   state: (): IState => ({
     projects: [],
+    currentOpenProject: {},
   }),
   mutations: {
     addProject(state, project: IProject) {
@@ -29,21 +31,33 @@ export default createStore({
     },
     setProjects(state, projects: IProject[]) {
       state.projects = [...projects];
+    },
+    setFirstCurrentOpenProject(state) {
+      if(state.projects.length) {
+        state.currentOpenProject = state.projects[0];
+      }
+      
+      console.log('state.currentOpenProject', state.currentOpenProject);
+    },
+    setCurrentOpenProject(state, project: IProject) {
+      state.currentOpenProject = project;
+      
+    },
+    addTask(state, tasks: ITask) {
+      if(tasks && 'tasks' in state.currentOpenProject) {
+        state.currentOpenProject.tasks = [...state.currentOpenProject.tasks, tasks];
+      }
     }
   },
   actions: {
     addProject(context, name: string): void {
       if(name.length) { 
         const idProject: string = generateRandomId(10);
-        const tascks: ITasks = {
-          idProject: idProject,
-          tasks: []
-        }
 
         const project: IProject = {
           name,
           id: idProject,
-          tasks: tascks
+          tasks: []
         }
         context.commit('addProject', project);
   
@@ -60,10 +74,24 @@ export default createStore({
         context.commit('editProject', {id, projectName})
       }
     },
+    setCurrentOpenProject(context, project: IProject) {
+      if(project) {
+        context.commit('setCurrentOpenProject', project);
+      }
+    },
+    addTask(context, tasks) {
+      if(tasks) {
+        const idTask: string = generateRandomId(10);
+        context.commit('addTask', {...tasks, id: idTask});
+      }
+    }
   },
   getters: {
     projects(state): IProject[] | [] {
       return state.projects;
+    },
+    currentOpenProject(state): IProject | {} {
+      return state.currentOpenProject;
     }
   },
   plugins: [createPersistedState()],

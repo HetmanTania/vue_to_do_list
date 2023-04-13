@@ -7,7 +7,7 @@
           <img  @click="addDialog.open" class="svg" src="@/icons/plus-gray.svg" alt="" />
         </div>
         <ul class="list-projects">
-          <li v-for="project in getProjects" :key="project.id" class="list-projects_item">
+          <li @click="openTaskCurrentProject(project)" v-for="project in getProjects" :key="project.id" class="list-projects_item">
             <div class="list-projects_item_text">{{ project.name }}</div>
             <div>
               <img @click="openEditDialog(project)" class="svg" src="@/icons/edit.svg" alt=""/>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, computed, ref, reactive } from "vue";
+import { defineComponent, computed, reactive } from "vue";
 import DialogAddProject from '../DialogAddProject/DialogAddProject.vue'
 import DialogEditProject from "../DialogEditProject/DialogEditProject.vue";
 import DialogeDelete from "../DialogDelite/DialogeDelete.vue";
@@ -74,7 +74,11 @@ export default defineComponent({
         }
     }
 
-    const editProject = (projectName: string):void => {
+    function openTaskCurrentProject(project: IProject) {
+      store.dispatch('setCurrentOpenProject', project);
+    }
+
+    const editProject = (projectName: string): void => {
       if(state.currentProject || projectName.length) {
         store.dispatch('editProject', {id: state.currentProject.id, projectName});
       }
@@ -91,7 +95,9 @@ export default defineComponent({
       openDeleteDialog,
       getDescDeleteDialog,
       deleteProject,
-      editProject
+      editProject,
+
+      openTaskCurrentProject
     };
   },
   components: {

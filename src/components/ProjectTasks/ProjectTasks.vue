@@ -1,15 +1,44 @@
 <template>
-    <ul class="project-tasks">
-        <project-task></project-task>    
+    <ul v-if="isHasTasks" class="project-tasks">
+      <li v-for="task in tasks" :key="task.id" class="project-tasks_task">
+        <input type="checkbox" name="" id="">
+            <div class="checkbox">
+                <img class="svg" src="@/icons/check.svg" alt="">
+            </div>
+        <label class="task-name">{{task.name}}</label>
+      </li> 
     </ul>
 </template>
 
 <script lang="ts">
-import ProjectTask from '../ProjectTask/ProjectTask.vue'
-export default {
-  components: { ProjectTask },
+import { ITask } from "@/types/interface";
+import { defineComponent, computed, onMounted } from "vue";
+import { useStore } from "vuex";
 
-}
+
+export default defineComponent({
+  setup() {
+    const store = useStore();
+
+    onMounted(() => {
+      store.commit('setFirstCurrentOpenProject');
+    })
+
+    const tasks = computed((): ITask[] | [] => {  
+      return store.getters.currentOpenProject.tasks;
+    });
+
+    const isHasTasks = computed((): boolean => {  
+      return !!store.getters.currentOpenProject.tasks.length;
+    });
+
+    return {
+      tasks,
+      isHasTasks,
+    }
+  },
+
+});
 </script>
 
 <style lang="scss">

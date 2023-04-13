@@ -6,7 +6,7 @@
     <span>Add Task</span>
   </div>
   <div v-if="dialogAddTask.isOpen.value" class="add-task-form">
-    <form >
+    <form @submit.prevent="addTask">
       <div class="add-task-form_input">
           <input v-model="nameTask" @input="inputNameTask" type="text" name="name" id="" placeholder="Task name">
           <span class="invalid-input" v-show="errors.validName.value">{{errors.validName.descError}}</span>
@@ -42,7 +42,7 @@ export default {
         name: nameTask.value,
         desc: descTask.value
       };
-      // store.dispatch('addTask', tasks);
+      store.dispatch('addTask', tasks);
     }
 
     const isDisable = computed((): boolean => {
@@ -55,7 +55,7 @@ export default {
       errors,
       inputNameTask,
       dialogAddTask,
-
+      addTask,
       isDisable
       
     }

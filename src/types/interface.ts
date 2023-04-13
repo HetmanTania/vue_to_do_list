@@ -4,15 +4,12 @@ interface ITask {
     desc: string,
 }
 
-interface ITasks {
-    idProject: string,
-    tasks: ITask[] | []
-}
+
 
 interface IProject {
     id: string,
     name: string,
-    tasks: ITasks | []
+    tasks: ITask[] | []
 }
 
 interface IProjcects {
@@ -20,7 +17,6 @@ interface IProjcects {
 }
 
 export {
-    ITasks,
     ITask,
     IProject,
     IProjcects,
