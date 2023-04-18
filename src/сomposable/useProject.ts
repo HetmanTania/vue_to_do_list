@@ -1,10 +1,10 @@
 import { ref, reactive} from 'vue'
 import { isHasRequiredLength } from '@/utils/valudation';
 import { nameMinMaxLength } from '@/utils/enum';
+import { IProject } from '@/types/interface';
 
-export default function useProject(name: string) {
-    const projectName = ref(name);
-
+export default function useProject(propsProject: IProject) {
+    const project = propsProject;
     const errors = reactive({
         validName: {
           value: false, 
@@ -16,13 +16,13 @@ export default function useProject(name: string) {
     });
     
     function inputNameProject(): void {
-        if(projectName.value) {
-          errors.validName.value = errors.validName.validation(projectName.value.length);
+        if(project.name) {
+          errors.validName.value = errors.validName.validation(project.name.length);
         }
     }
 
     return {
-        projectName,
+        
         errors,
         inputNameProject
     }

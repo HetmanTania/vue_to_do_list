@@ -12,6 +12,7 @@
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0",
+    "vuex-composition-helpers": "^2.0.3",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {

@@ -1,21 +1,21 @@
 <template>
   <div class="home-container">
-    <side-panel></side-panel>
-    <div class="content">
+    <project-panel></project-panel>
+    <!-- <div class="content">
       <project></project>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts">
-import SidePanel from '@/components/SidePanel/SidePanel.vue';
-import Project from '../Project/Project.vue';
+import ProjectPanel from '@/components/ProjectPanel/ProjectPanel.vue';
+// import Project from '../Project/Project.vue';
 
 export default {
   name: 'Home',
   components: {
-    SidePanel,
-    Project
+    ProjectPanel,
+    // Project
   },
 };
     
