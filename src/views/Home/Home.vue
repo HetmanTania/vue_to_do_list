@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <side-panel></side-panel>
+    <project-panel></project-panel>
     <div class="content">
       <project></project>
     </div>
@@ -8,13 +8,13 @@
 </template>
 
 <script lang="ts">
-import SidePanel from '@/components/SidePanel/SidePanel.vue';
+import ProjectPanel from '@/components/ProjectPanel/ProjectPanel.vue';
 import Project from '../Project/Project.vue';
 
 export default {
   name: 'Home',
   components: {
-    SidePanel,
+    ProjectPanel,
     Project
   },
 };

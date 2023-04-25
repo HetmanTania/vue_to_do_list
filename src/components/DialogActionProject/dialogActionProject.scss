@@ -1,14 +1,10 @@
-@import '../../style/color.scss';
-@import '../../style/mixins.scss';
-
-
-.add-project-form {
+.project-form {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 
-    .add-project_input {
+    .project_input {
         margin-top: 20px;
         display: flex;
         flex-direction: column;

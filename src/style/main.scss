@@ -89,7 +89,7 @@ button[type="submit"]:disabled {
 
 .dialog_btn {
     @include flex(center, flex-end);
-    .add-project-btn {
+    .project-btn {
         background-color: $orange;
         color: $white;
     }
