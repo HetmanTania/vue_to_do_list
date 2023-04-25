@@ -1,5 +1,5 @@
 <template>
-    <ul v-if="isHasTasks" class="project-tasks">
+    <ul class="project-tasks">
       <li v-for="task in tasks" :key="task.id" class="project-tasks_task">
         <input type="checkbox" name="" id="">
             <div class="checkbox">
@@ -7,7 +7,8 @@
             </div>
         <label class="task-name">{{task.name}}</label>
       </li> 
-    </ul>
+    </ul> 
+    <div></div>
 </template>
 
 <script lang="ts">
@@ -20,16 +21,27 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
+    console.log('ff');
+    
     onMounted(() => {
-      store.commit('setFirstCurrentOpenProject');
+      store.dispatch('setOpenProjectFirst');
+      console.log(store.getters.openProject.tasks);
+      
     })
 
     const tasks = computed((): ITask[] | [] => {  
-      return store.getters.currentOpenProject.tasks;
+      return store.getters.openProject.tasks;
     });
 
-    const isHasTasks = computed((): boolean => {  
-      return !!store.getters.currentOpenProject.tasks.length;
+    const isHasTasks = computed((): boolean => { 
+      console.log('isHasTasks computed', store.getters.openProject.task);
+      
+      if(store.getters.openProject?.task) {
+        console.log('isHasTasks', store.getters.openProject.tasks);
+        
+        return !!store.getters.openProject.tasks.length;
+      }
+      return false;
     });
 
     return {

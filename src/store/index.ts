@@ -1,24 +1,17 @@
-
-// import { generateRandomId } from '@/utils/utils';
-// interface IState {
-//   projects: IProject[] | [],
-//   currentOpenProject: IProject | {}
-// }
-
-
-import { createStore } from 'vuex'
 import Vuex from 'vuex'
-import { IProject}  from '@/types/interface';
 import createPersistedState from "vuex-persistedstate";
 import projectModule, {IProjectState} from './modules/project';
+import tasksModule, { ITasksState } from './modules/tasks';
 export interface State {
-  projects: IProjectState,
+  projectsModule: IProjectState,
+  tasksModule: ITasksState
 }
 
 
 export default new Vuex.Store<State>({
   modules: {
-    projects: projectModule
+    projectsModule: projectModule,
+    tasksModule: tasksModule,
   },
   plugins: [createPersistedState()]
 

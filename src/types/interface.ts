@@ -4,6 +4,11 @@ interface ITask {
     desc: string,
 }
 
+interface IAddTask {
+    name: string,
+    desc: string,
+}
+
 interface IProject {
     id: string,
     name: string,
@@ -27,6 +32,7 @@ interface IActionsMap {
 
 export {
     ITask,
+    IAddTask,
     IProject,
     IProjcects,
     IEditProject,

@@ -48,7 +48,7 @@ export default defineComponent({
     });
 
     const getProjects = computed((): IProject[] | [] => {
-      return store.getters['projects/projects'];
+      return store.getters['projectsModule/projects'];
     });
 
     const openDialog = (action: TAction, project?: IProject): void => {
@@ -68,20 +68,20 @@ export default defineComponent({
     const doAction = (project: IProject, action: TAction): void => {
       if(action) {
         if(action === 'add') {
-          store.dispatch('projects/addProject', project.name);
+          store.dispatch('projectsModule/addProject', project.name);
         }
         else if(action === 'edit') {
-          store.dispatch('projects/editProject', project);
+          store.dispatch('projectsModule/editProject', project);
         }
         else if(action === 'delete') {
-          store.dispatch('projects/deleteProject', project);
+          store.dispatch('projectsModule/deleteProject', project);
         }
         
       }
     }
 
-    function openTaskCurrentProject(project: IProject) {
-      // store.dispatch('setCurrentOpenProject', project);
+    const openTaskCurrentProject = (project: IProject): void =>{
+      store.dispatch('setOpenProject', project);
     }
 
     return {
@@ -102,5 +102,5 @@ export default defineComponent({
 
 <style lang="scss">
 @import "../../style/color.scss";
-@import "./sidePanel.scss";
+@import "./projectPanel.scss";
 </style>

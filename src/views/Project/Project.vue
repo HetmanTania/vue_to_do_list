@@ -1,7 +1,7 @@
 <template>
-    <div class="container-max">
+    <div v-if="isHasProject" class="container-max">
         <div class="project-content">
-            <h2 class="project-name">{{ currentOpenProject.name }}</h2>
+            <h2 class="project-name">{{ openProject.name }}</h2>
             <project-tasks></project-tasks>
             <add-task-panel></add-task-panel>
         </div>
@@ -19,12 +19,20 @@ export default defineComponent({
     setup() {
         const store = useStore();
 
-        const currentOpenProject = computed(() => {  
-            return store.getters.currentOpenProject;
+        const openProject = computed(() => {  
+            return store.getters.openProject;
+        });
+
+        const isHasProject = computed((): boolean => { 
+            if(store.getters.openProject) {
+                return !!store.getters.openProject;
+            }
+            return false;
         });
 
         return {
-            currentOpenProject,
+            openProject,
+            isHasProject,
         }
     },
     components: {

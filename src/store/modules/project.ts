@@ -54,6 +54,9 @@ export default {
         deleteProject(context: Context, project: IProject) {
             if(project) {
                 context.commit('deleteProject', project.id);
+                if(!context.rootState.projectsModule.projects.length) {
+                    context.commit('resetOpenProject', null, { root: true });
+                }
             }
         },
     },
